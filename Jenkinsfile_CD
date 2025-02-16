@@ -62,7 +62,7 @@ pipeline {
 
                     sh '''
                     
-                        variable=$(aws cloudformation describe-stacks --stack-name todo-aws-list-staging --query "Stacks[0].Outputs[?OutputKey=='BaseUrlApi'].OutputValue" --output text)
+                        variable=$(aws cloudformation describe-stacks --stack-name todo-aws-list-production --query "Stacks[0].Outputs[?OutputKey=='BaseUrlApi'].OutputValue" --output text)
                         
                         export BASE_URL=$variable
                         
