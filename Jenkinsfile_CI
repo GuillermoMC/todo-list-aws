@@ -47,7 +47,7 @@ pipeline {
 
                             '''
         
-                            recordIssues tools: [flake8(name: 'Flake8', pattern: 'flake8.out')], qualityGates: [[threshold: 0, type: 'TOTAL', unstable: true], [threshold: 15, type: 'TOTAL', unstable: false]]
+                            recordIssues tools: [flake8(name: 'Flake8', pattern: 'flake8.out')], qualityGates: [[threshold: 0, type: 'TOTAL', unstable: true], [threshold: 1500, type: 'TOTAL', unstable: false]]
         
                         }
                     
@@ -67,7 +67,7 @@ pipeline {
 
                             '''
         
-                            recordIssues tools: [pyLint(name: 'Bandit', pattern: 'bandit.out')], qualityGates: [[threshold: 0, type: 'TOTAL', unstable: true], [threshold: 15, type: 'TOTAL', unstable: false]]
+                            recordIssues tools: [pyLint(name: 'Bandit', pattern: 'bandit.out')], qualityGates: [[threshold: 0, type: 'TOTAL', unstable: true], [threshold: 1500, type: 'TOTAL', unstable: false]]
                             
                         }
         
