@@ -84,20 +84,24 @@ pipeline {
         stage('Deploy') {
             
             steps {
-                
-                sh '''
 
-                    sam build
+                catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                 
-                '''
+                    sh '''
 
-                // tener en cuenta de que tiene que estar el s3 creado
-                // --no-execute-changeset se queda en CREATE_IN_PROGRESS
-                sh '''
+                        sam build
+                    
+                    '''
 
-                    sam deploy --no-fail-on-empty-changeset --config-file samconfig.toml --config-env staging --s3-bucket unir-cp-sam --stack-name todo-aws-list-staging
-                
-                '''
+                    // tener en cuenta de que tiene que estar el s3 creado
+                    // --no-execute-changeset se queda en CREATE_IN_PROGRESS
+                    sh '''
+
+                        sam deploy --no-fail-on-empty-changeset --config-file samconfig.toml --config-env staging --s3-bucket unir-cp-sam --stack-name todo-aws-list-staging
+                    
+                    '''
+
+                }
                 
             }
             
@@ -142,7 +146,6 @@ pipeline {
                             git push https://\$GIT_USERNAME:\$GIT_TOKEN@github.com/GuillermoMC/todo-list-aws.git develop
 
                             git checkout master
-                            git pull master
                             git merge --no-ff develop
                             git push https://\$GIT_USERNAME:\$GIT_TOKEN@github.com/GuillermoMC/todo-list-aws.git master 
 
