@@ -37,7 +37,7 @@ pipeline {
                 '''
                 // descargar configuración para CI
                 sh '''
-                    curl -O https://github.com/GuillermoMC/todo-list-aws-config/blob/staging/samconfig.toml samconfig-staging.toml
+                    curl -o samconfig-staging.toml https://raw.githubusercontent.com/GuillermoMC/todo-list-aws-config/refs/heads/staging/samconfig.toml
                 '''
 
                 stash name: 'proyecto', includes: '**'
