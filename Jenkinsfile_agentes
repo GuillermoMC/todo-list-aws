@@ -12,7 +12,7 @@ pipeline {
         
         stage('Get Code') {
 
-            agent any;
+            agent any
 
             steps {
 
@@ -36,6 +36,8 @@ pipeline {
 
                 '''
 
+                stash name: 'proyecto', includes: '**'
+
             }
         }
         
@@ -46,9 +48,11 @@ pipeline {
                 
                 stage('Static') {
             
-                    agent { label: 'agente1' }
+                    agent {  label 'agente1' }
 
                     steps {
+
+                        unstash name: 'proyecto'
 
                         sh '''
 
@@ -75,9 +79,11 @@ pipeline {
                 
                 stage('Security') {
                     
+                    agent { label: 'agente1' }
+                    
                     steps {
 
-                        agent { label: 'agente1' }
+                        unstash name: 'proyecto'
 
                         sh '''
 
@@ -110,9 +116,11 @@ pipeline {
         
         stage('Deploy') {
 
-            agent any;
+            agent any
             
             steps {
+
+                unstash name: 'proyecto'
 
                 sh '''
 
@@ -148,6 +156,8 @@ pipeline {
             agent { label: 'agente2' }
             
             steps {
+
+                unstash name: 'proyecto'
                 
                 sh '''
 
@@ -181,6 +191,8 @@ pipeline {
             agent any
             
             steps {
+
+                unstash name: 'proyecto'
 
                 sh '''
 
