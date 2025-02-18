@@ -38,6 +38,11 @@ pipeline {
                     
                 '''
 
+                 // descargar configuración para CD
+                sh '''
+                    curl -O https://github.com/GuillermoMC/todo-list-aws-config/blob/production/samconfig.toml samconfig-production.toml
+                '''
+
                 stash name: 'proyecto', includes: '**'
 
             }
@@ -66,9 +71,12 @@ pipeline {
                 
                 // tener en cuenta de que tiene que estar el s3 creado
                 // --no-execute-changeset se queda en CREATE_IN_PROGRESS
+
+                // antes -> sam deploy --no-fail-on-empty-changeset --config-file samconfig.toml --config-env production --s3-bucket unir-cp-sam --stack-name todo-aws-list-production
+                // ahora se especifica el fichero de configuración descargado para este CD
                 sh '''
                 
-                    sam deploy --no-fail-on-empty-changeset --config-file samconfig.toml --config-env production --s3-bucket unir-cp-sam --stack-name todo-aws-list-production
+                    sam deploy --no-fail-on-empty-changeset --config-file samconfig-production.toml --s3-bucket unir-cp-sam
                 
                 '''
                 
