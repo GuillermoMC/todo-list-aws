@@ -79,7 +79,7 @@ pipeline {
                 
                 stage('Security') {
                     
-                    agent { label: 'agente1' }
+                    agent { label 'agente1' }
                     
                     steps {
 
@@ -153,7 +153,7 @@ pipeline {
         
         stage('Rest Test') {
     
-            agent { label: 'agente2' }
+            agent { label 'agente2' }
             
             steps {
 
