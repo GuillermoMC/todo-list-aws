@@ -213,6 +213,7 @@ pipeline {
                         sh '''
 
                             git checkout master
+                            git pull
                             git merge --no-ff develop
                             git push https://\$GIT_USERNAME:\$GIT_TOKEN@github.com/GuillermoMC/todo-list-aws.git master 
 
