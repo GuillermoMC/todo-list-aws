@@ -214,6 +214,7 @@ pipeline {
 
                             git checkout master
                             git pull
+                            git config --global merge.ours.driver true
                             git merge --no-ff develop
                             git push https://\$GIT_USERNAME:\$GIT_TOKEN@github.com/GuillermoMC/todo-list-aws.git master 
 
