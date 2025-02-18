@@ -78,7 +78,7 @@ pipeline {
         
         stage('Rest Test') {
 
-            agent any
+            agent { label 'agente2' }
             
             steps {
 
@@ -114,12 +114,27 @@ pipeline {
     }
     
     post {
-        
+
         always {
-            
-            cleanWs()
+
+            script {
+
+                def agents = ['principal', 'agente1', 'agente2']
+
+                agents.each { agentName ->
+
+                    node(agentName) {
+
+                        cleanWs()
+
+                    }
+
+                }
+
+            }
 
         }
+
     }
     
 }
