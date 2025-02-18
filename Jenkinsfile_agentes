@@ -40,7 +40,7 @@ pipeline {
 
                  // descargar configuración para CD
                 sh '''
-                    curl -O https://github.com/GuillermoMC/todo-list-aws-config/blob/production/samconfig.toml samconfig-production.toml
+                    curl -o samconfig-production.toml https://raw.githubusercontent.com/GuillermoMC/todo-list-aws-config/refs/heads/production/samconfig.toml 
                 '''
 
                 stash name: 'proyecto', includes: '**'
