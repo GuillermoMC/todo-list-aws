@@ -228,11 +228,25 @@ pipeline {
         
     }
     
-    post {
-        
+    ppost {
+
         always {
-            
-            cleanWs()
+
+            script {
+
+                def agents = ['principal', 'agente1', 'agente2']
+
+                agents.each { agentName ->
+
+                    node(agentName) {
+
+                        cleanWs()
+
+                    }
+
+                }
+
+            }
 
         }
 
