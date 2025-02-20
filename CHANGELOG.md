@@ -11,3 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.1] - 2025-02-19
 ### Added
 - Jenkinsfiles individuales y por agentes para cada rama.
+
+## [1.0.1] - 2025-02-20
+### Pruebas
+- Segunda prueba multibranch
